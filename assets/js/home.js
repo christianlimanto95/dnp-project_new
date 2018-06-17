@@ -1,29 +1,30 @@
 var animating = false;
 $(function() {
-    $(window).one('mousewheel DOMMouseScroll', scrollFunction);
+    $(window).on('mousewheel DOMMouseScroll', scrollFunction);
+    $(document).on("keydown", keydownFunction);
+});
 
-    $(document).on("keydown", function(e) {
-        if (e.which == 40) {
-            if (!animating) {
-                var index = parseInt($(".home-item.active").attr("data-index"));
-                index = nextIndex(index);
-                if (index) {
-                    animating = true;
-                    setAnimation(index);
-                }
-            }
-        } else if (e.which == 38) {
-            if (!animating) {
-                var index = parseInt($(".home-item.active").attr("data-index"));
-                index = prevIndex(index);
-                if (index) {
-                    animating = true;
-                    setAnimation(index);
-                }
+function keydownFunction(e) {
+    if (e.which == 40) {
+        if (!animating) {
+            var index = parseInt($(".home-item.active").attr("data-index"));
+            index = nextIndex(index);
+            if (index) {
+                animating = true;
+                setAnimation(index);
             }
         }
-    });
-});
+    } else if (e.which == 38) {
+        if (!animating) {
+            var index = parseInt($(".home-item.active").attr("data-index"));
+            index = prevIndex(index);
+            if (index) {
+                animating = true;
+                setAnimation(index);
+            }
+        }
+    }
+}
 
 function scrollFunction(e) {
     e.preventDefault();
@@ -38,7 +39,6 @@ function scrollFunction(e) {
 
         if (index) {
             animating = true;
-            $(window).off("mousewheel DOMMouseScroll");
             setAnimation(index);
         }
     }
@@ -71,17 +71,28 @@ function setAnimation(index) {
                 $(".home-item[data-index='" + index + "']").one("webkitAnimationEnd oanimationend msAnimationEnd animationend", function() {
                     $(this).off("webkitAnimationEnd oanimationend msAnimationEnd animationend");
                     animating = false;
-                    $(window).one('mousewheel DOMMouseScroll', scrollFunction);
                 });
             } else {
+                $(window).off('mousewheel DOMMouseScroll', scrollFunction);
+                $(window).off("keydown", keydownFunction);
                 $(".home-item[data-index='" + index + "']").one("webkitAnimationEnd oanimationend msAnimationEnd animationend", function() {
                     $(this).off("webkitAnimationEnd oanimationend msAnimationEnd animationend");
                     animating = false;
-                    $(window).one('mousewheel DOMMouseScroll', scrollFunction);
                 });
                 $(".section-1").addClass("show");
+                container.scrollTop(1);
+                $(window).on('mousewheel DOMMouseScroll', sectionScrollFunction);
             }
         }, 300);
     });
     $(".home-item.active").addClass("hiding");
+}
+
+function sectionScrollFunction(e) {
+    if (container.scrollTop() == 0) {
+        $(window).off('mousewheel DOMMouseScroll', sectionScrollFunction);
+        $(window).on('mousewheel DOMMouseScroll', scrollFunction);
+        animating = true;
+        setAnimation(2);
+    }
 }

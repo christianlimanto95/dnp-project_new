@@ -30,6 +30,7 @@ body {
     height: 38px;
     background-size: 100%;
     background-repeat: no-repeat;
+    z-index: 1000;
 }
 
 .header-menu {

@@ -95,10 +95,42 @@
 .section-1 {
     display: none;
     margin-top: 100vh;
-    height: 1000px;
-    background-color: cyan;
+    height: 2000px;
+    position: relative;
 }
 
 .section-1.show {
     display: block;
+}
+
+.work-item {
+    display: block;
+    position: absolute;
+}
+
+.work-item[data-index="1"] {
+    top: 100px;
+    left: 10vw;
+}
+
+.work-item[data-index="1"] .work-item-image {
+    width: 25vw;
+}
+
+.work-item[data-index="2"] {
+    top: 200px;
+    right: 10vw;
+}
+
+.work-item[data-index="2"] .work-item-image {
+    width: 45vw;
+}
+
+.work-item[data-index="3"] {
+    top: calc(100px + 60vw);
+    left: 25vw;
+}
+
+.work-item[data-index="3"] .work-item-image {
+    width: 50vw;
 }

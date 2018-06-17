@@ -26,5 +26,13 @@
     </div>
 </div>
 <div class="section section-1">
-
+    <a target="_blank" href="https://elevatebranding-id.com" class="work-item image-container" data-index="1">
+        <img class="work-item-image" src="<?php echo base_url("assets/images/elevate-mobile.png"); ?>" data-src="<?php echo base_url("assets/images/elevate-mobile.png"); ?>" />
+    </a>
+    <a target="_blank" href="http://rhematours.com" class="work-item image-container" data-index="2">
+        <img class="work-item-image" src="<?php echo base_url("assets/images/rhema.png"); ?>" data-src="<?php echo base_url("assets/images/rhema.png"); ?>" />
+    </a>
+    <a target="_blank" href="http://usedjeansindonesia.com" class="work-item image-container" data-index="3">
+        <img class="work-item-image" src="<?php echo base_url("assets/images/usedjeansindonesia.png"); ?>" data-src="<?php echo base_url("assets/images/usedjeansindonesia.png"); ?>" />
+    </a>
 </div>

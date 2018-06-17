@@ -73,23 +73,6 @@ $(function() {
         }
     });
 
-    [].forEach.call(document.querySelectorAll("[data-src]"), function(element) {
-        var image = new Image();
-        
-		if (element.tagName != "IMG") {
-			image.onload = function() {
-                element.style.backgroundImage = "url('" + image.src + "')";
-                $(element).addClass("hide-wrapper");
-            };
-            image.src = element.getAttribute("data-src");
-		} else {
-			image.onload = function() {
-                $(element).parent().addClass("hide-wrapper");
-            };
-            image.src = element.getAttribute("src");
-		}
-    });
-
     $(window).resize(function() {
         initializeDefault();
         setScrollAnimFunction();
